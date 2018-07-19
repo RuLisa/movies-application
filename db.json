@@ -6,9 +6,55 @@
       "id": 1
     },
     {
-      "title": "Star Wars: A New Hope",
+      "title": "Skyscraper",
       "rating": "5",
       "id": 2
+    }, {
+      "title": "Star Wars: A New Hope",
+      "rating": "1",
+      "id": 3
+    }, {
+      "title": "The First Purge",
+      "rating": "2",
+      "id": 4
+    }, {
+      "title": "Uncle Drew",
+      "rating": "5",
+      "id": 5
+    }, {
+      "title": "Hotel Transylvania",
+      "rating": "4",
+      "id": 6
+    }, {
+      "title": "Gone with the Wind",
+      "rating": "5",
+      "id": 7
+    }, {
+      "title": "The Day the Earth stood still",
+      "rating": "5",
+      "id": 8
+    },
+    {
+      "title": "Aquaman",
+      "rating": "3",
+      "id": 9
+    }, {
+      "title": "The Equalizer",
+      "rating": "3",
+      "id": 10
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
   ]
 }

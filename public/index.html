@@ -4,14 +4,64 @@ git<!DOCTYPE html>
     <meta charset="UTF-8" />
     <title>My Application</title>
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
 </head>
 <body>
 
     <div class="container">
+<<<<<<< HEAD
+        <div id="loadSuccess" class="loader"> <h1>Hello There!</h1>
+            <p>To get started, edit  <code>src/index.js</code>.</p>
+        </div>
+        <!--<div class="jumbotron">-->
+<!--&lt;!&ndash;INSERT BANNER HERE&ndash;&gt;-->
+        <!--</div>-->
+        <div class="row">
+           <div class="col-6">
+               <card><div id="insertHere">
+
+<!--list of all available movies prints here-->
+
+               </div></card>
+        </div>
+        <!--form for adding movie's title & rating-->
+            <div class="col-6">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <h1>Add to the movie list.</h1>
+                    </div>
+                    <div class="card-body" style="background-color: lightcyan">
+                        <div id="theForm">
+                            <form>
+                                <ul>
+                                    <li class="list-group">
+                                    <li class="list-group-item data-live-search">
+                                        <strong>Movie Title: </strong>
+                                        <textarea id="title" class="form-control" required placeholder="enter your movie title"></textarea></li>
+                                    <li  id="rating"class="list-group-item slidecontainer"><div class="slidecontainer"><label for="rating"><strong>Rating: </strong></label>
+                                        1 <input  type="range" min="1" max="5" value="3" id=" myRange" > 5<p>Rate Value:  <span id="demo"></span></p></div></li>
+                                </ul>
+
+
+  <!--buttons                   -->
+                                <div class="card-footer">
+                                    <input class=" btn btn-lg btn-warning resetbtn" type="reset" name="reset" id="resetbtn"  value="Reset" />
+                                    <button id="submitButton" class="btn btn-lg btn-primary" type="button" onClick="updateForm();">Add movie!!</button>
+                                </div>
+                            </form>
+
+
+                </div>
+            </div>
+        <!--card/form ends here-->
+        </div>
+=======
         <h1>Hello There!</h1>
         <p>To get started,  edit <code>src/index.js</code>.</p>
+>>>>>>> master
     </div>
 
-    <script src="/main.js"></script>
+        <script src="/main.js"></script>
 </body>
 </html>
