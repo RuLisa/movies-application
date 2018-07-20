@@ -55,7 +55,8 @@ html, body {
     }
 }
 #loadingDiv:after {
-    position:absolute;;
+    z-index: 200;
+    position:absolute;
     top:0;
     left:0;
     width:100%;
@@ -69,7 +70,7 @@ html, body {
     box-shadow: 5px 5px lightpink;
 }
 form {
-
+    z-index: 300;
 }
 
 .row {

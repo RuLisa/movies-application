@@ -1,9 +1,10 @@
 /**
  * es6 modules and imports
  */
+//code need to activate jquery
 const $ = require('jquery');
 
-
+//code imports movies from .api.js
 const {getMovies} = require('./api.js');//require is importing the from api.js which is pulling the data from the db
 
 import sayHello from './hello';
@@ -21,7 +22,7 @@ $('body').append('<div style="font-size: 50px " id="loadingDiv"><div class="load
 $(window).on('load', function(){
 
     setTimeout(function(){
-        $('#greetHide').fadeIn(2000);
+        $('#loader').fadeIn(2000);
     }, 2000);
     setTimeout(removeLoader, 1000); //wait for page load PLUS two seconds.
 });
@@ -32,53 +33,33 @@ function removeLoader(){
     });
 }
 
-//INITIAL AJAX
-
-
 // GET MOVIE INFORMATION & PRINT TO CONSOLE & BROWSER
-getMovies().then((movies) => {
-    console.log('Here are all the movies:');
-//1.creates table to hold movies; 2. inserts movies simultaneously.
-    const resultHtml =
-        $('<table id="listHere"><thead ><tr><th id="id" scope="col">Movie ID</th><th id="title" scope="col">Title</th><th id="rating" scope="col">Rating</th><th id="rating" scope="col">Edit/Delete</th></tr></thead><tr><td>e.g. 45</td><td>e.g. Gone with the Wind</td><td>e.g. 5</td><td><button onclick="deleteRow();">Delete row</button></td></tr>');
 
-    movies.forEach(({title, rating, id}) => {
-        console.log(`id#${id} - ${title} - rating: ${rating}`);//checks movies are being returned
-        resultHtml.append(` 
-                    <tbody><tr><td>${id}</td><td>${title}</td><td>${rating}</td><td><button onclick="deleteRow();">Delete row</button></td></tr></tbody> `);
-        resultHtml.append('</table>');//append to browser in new table
-        $('#insertHere').html(resultHtml);//target-div for new table
+//calling movie list to load
+loadMovies();
 
+function loadMovies(){
+    getMovies().then((movies) => {
+        console.log('Here are all the movies:');
+    //1.creates table to hold movies; 2. inserts movies simultaneously.
+        let resultHtml =
+            $('<table id="listHere"><thead ><tr><th id="id" scope="col">Movie ID</th>' +
+                '<th id="title" scope="col">Title</th><th id="rating" scope="col">Rating</th><th id="rating" scope="col">Edit/Delete</th></tr></thead><tr><td>e.g. 45</td><td>e.g. Gone with the Wind</td><td>e.g. 5</td><td>Edit/Delete</td></tr>');
+
+        movies.forEach(({title, rating, id}) => {
+            console.log(`id#${id} - ${title} - rating: ${rating}`);//checks movies are being returned
+            resultHtml.append(` 
+                        <tbody><tr><td>${id}</td><td>${title}</td><td>${rating}</td><td><button onclick="editRow();">Edit row</button><button onclick="deleteRow();">Delete row</button></td></tr></tbody> `);
+            resultHtml.append('</table>');//append to browser in new table
+            $('#insertHere').html(resultHtml);//target-div for new table
+
+        });
+    }).catch((error) => {
+        alert('Oh no! Something went wrong.\nCheck the console for details.');
+        console.log(error);
     });
-}).catch((error) => {
-    alert('Oh no! Something went wrong.\nCheck the console for details.');
-    console.log(error);
-});
+}
 
-$("#submitButton").click(function(){
-    const search = $('#listHere').val();
-
-    $.ajax({
-        url: '/api/movies',
-        type: 'post',
-        data: {
-            title: $(`title`).val(),
-            rating: $(`rating`).val(),
-        },
-        beforeSend: function(){
-            // Show image container
-            $("#loader").show();
-        },
-        success: function(response){
-            $('.response').empty();
-            $('#listHere').append(response);
-        },
-        complete:function(data){
-            // Hide image container
-            $("#loader").hide();
-        }
-    });
-})
 
 //RATING SLIDER MANIPULATION
 
@@ -108,7 +89,6 @@ function Movie(title, rating) {
 
 }
 
-const movieList = [];
 
 window.onload = init;
 
@@ -118,26 +98,54 @@ function init() {
 }
 
 function getMovieData() {
-    const titleInput = document.getElementById("title");
-    const title = titleInput.value;
+    const title = document.getElementById("title");
+    let newTitle = title.value;
 
-    const ratingInput = document.getElementById("rating");
-    const rating = parseInt(ratingInput.value);
+    const rating = document.getElementById("rating");
+    let newRating = parseInt(rating.value);
 
+    let newMovie = {title: newTitle, rating: newRating};
 
-
-    if (title == null || title == "") {
+    if (newTitle == null || newTitle === "") {
         alert("Please enter a movie title");
-        return;
-    }
-    else {
-        const movie = new Movie(title, rating);
-        movieList.push(movie);
-        const movies = document.getElementById("movies");
-        movies.innerHTML = "Added " + movie.title + " to the list.";
 
-        const theForm = document.getElementById("theForm");
-        theForm.reset();
-    }
-}
+    } else {
+
+        const movies = document.getElementById("movies");
+        movies.innerHTML = "Added " + newMovie.title + " to the list.";
+
+        const url = '/api/movies';
+        const options = {
+            method: "POST",
+            headers: {
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newMovie),
+            // data: {search: search}
+        }; //end of options
+
+        fetch(url, options).then(
+            function (){
+                // Show image container
+                $("#loader").show()
+            }).then(function (response) {
+                console.log(newMovie);
+                loadMovies();
+    
+
+        }).then(function (data) {
+                // Hide image container
+                $("#loader").hide();
+            }
+        )
+
+
+        // const theForm = document.getElementById("theForm");
+        // theForm.reset();
+
+
+
+}}
 // RESET FORMS
+
