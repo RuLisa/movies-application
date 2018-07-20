@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,69 +10,87 @@
 </head>
 <body>
 
-    <div class="container">
-<!--image loader-->
-        <!--<div id='loader' style='display: none;'>-->
-            <!--<img src='reload.gif' width='32px' height='32px'>-->
-        <!--</div>-->
-        <div id="loader" class="loader" style='display: none;'> <h1>Hello There!</h1>
-            <p>To get started, edit  <code>src/index.js</code>.</p>
-        </div>
-        <!--<div class="jumbotron">-->
-<!--&lt;!&ndash;INSERT BANNER HERE&ndash;&gt;-->
-        <!--</div>-->
+<nav class="navbar fixed-top navbar-light bg-light">
 
+    <!--form for adding movie's title & rating-->
 
-<!--div for adding movies-->
-        <div class="response"></div>
-        <div class="row">
-           <div class="col-6">
-               <card><div id="insertHere">
+    <form id="theForm" method="post">
 
-<!--list of all available movies prints here-->
+        <div id="myForm" class="text-center">
+            <div class="">
+                <h1>Add to the movie list.</h1>
+            </div>
+            <div class=" "style="background-color: lightcyan">
+                <div class="row wrapInput">
+                    <div class="col-3" >
 
-               </div></card>
-        </div>
-        <!--form for adding movie's title & rating-->
-            <div class="col-6">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <h1>Add to the movie list.</h1>
+                        <div class="movieInfo resetHere">
+                            <strong>Movie Title: </strong>
+                            <input id="title" class="titleInput" required placeholder="enter your movie title">
+                        </div>
                     </div>
-                    <div class="card-body" style="background-color: lightcyan">
-                        <div id="theForm">
+                    <div class="col-6">
+                        <div>
+                            <strong>Rate your Movie!  </strong>
                             <form>
-                                <ul>
-                                    <li class="list-group">
-                                    <li class="list-group-item data-live-search">
-                                        <strong>Movie Title: </strong>
-                                        <input id="title" class="form-control" required placeholder="enter your movie title"></li>
-                                    <li  class="list-group-item slidecontainer"><div class="slidecontainer"><label for="rating"><strong>Rating: </strong></label>
-                                        1 <input id="rating" type="range" min="1" max="5" value="3" id=" myRange" > 5<p>Rate Value:  <span id="demo"></span></p></div></li>
-                                </ul>
-
-
-  <!--buttons                   -->
-                                <div class="card-footer">
-                                    <input class=" btn btn-lg btn-warning resetbtn" type="reset" name="reset" id="resetbtn"  value="Reset" />
-                                    <button id="submitButton" class="btn btn-lg btn-primary" type="button" >Add movie!!</button>
+                                <div id="" class="resetHere form-group">
+                                    <label for="slider"></label>
+                                    <input class="resetHere" type="range" min="1" max="5" value="3" class="form-control-range" id="rating">
                                 </div>
+                                <div id="slider" class="resetHere"></div>
+                                <span id="ratingNum" class="resetHere"><h3><strong></strong></h3>  </span>
                             </form>
-
-
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <input type="button"  id="resetbtn" class=" btn btn-block btn-warning resetbtn" type="reset" name="reset"  value="Reset" >  </input>
+                        <input type="button" id="submitButton" class="btn btn-block btn-primary" type="submit" value="Add movie!!">
+                    </div>
                 </div>
             </div>
-        <!--card/form ends here-->
-        </div>
-=======
-        <h1>Hello There!</h1>
-        <p>To get started,  edit <code>src/index.js</code>.</p>
+            <div class="">
+                <h3 id="movies" ></h3>
+            </div>
+            <!--card/form ends here-->
+        </div></form>
+</nav>
+<div class="container">
 
+
+    <!--GREETING SCREEN-->
+
+    <div id="greetHide"> <h1>Hello There!</h1>
+        <p>To get started, edit  <code>src/index.js</code>.</p>
     </div>
+
+    <!--FIXED TO TOP FORM TO ADD MOVIES TO LIST-->
+
+
+    <!--VIEW ADD MOVIES TO LIST -->
+    <div  class="row">
+        <div class="col-12">
+            <div id="insertHere">
+
+                <!--list of all available movies prints here-->
+
+
+
+
+            </div>
         </div>
     </div>
+    <div class=" response"></div>
 
 
-        <script src="/main.js"></script>
+
+
+    <!--</div>-->
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+<script src="/main.js"></script>
 </body>
 </html>
